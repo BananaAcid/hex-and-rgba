@@ -1,7 +1,7 @@
 {
   "name": "hex-and-rgba",
   "version": "1.0.0",
-  "description": "Convert HEX with alpha to RGBA",
+  "description": "Convert HEX with alpha to RGBA and back",
   "main": "index.js",
   "repository": {
     "type": "git",
