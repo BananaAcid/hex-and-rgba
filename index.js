@@ -1,5 +1,3 @@
-//REQ: io.js
-
 'use strict';
 
 
