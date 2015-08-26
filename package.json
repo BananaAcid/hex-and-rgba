@@ -1,0 +1,26 @@
+{
+  "name": "hex-and-rgba",
+  "version": "1.0.0",
+  "description": "Convert HEX with alpha to RGBA",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BananaAcid/hex-and-rgba.git"
+  },
+  "keywords": [
+    "hex",
+    "rgba",
+    "convert",
+    "colors"
+  ],
+  "author": "BananaAcid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BananaAcid/hex-and-rgba/issues"
+  },
+  "homepage": "https://github.com/BananaAcid/hex-and-rgba#readme",
+  "engines": {
+    "node": ">= 0.11.16",
+    "iojs": ">= 1.0.0"
+  }
+}
