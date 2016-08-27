@@ -9,7 +9,7 @@ module.exports.rgbaToHex = function rgbaToHex(rgba_params_here)
 
     var args = Array.prototype.slice.call(arguments);       // Arguments to Array conversion
     
-    if (args.length == 4)                                   // is with alpha
+    if (args.length == 4)                                   // is with optional alpha value
         args[3] = Math.floor(255 * args[3]);                // opacity float to 255-based value
 
     return '#' + arraytoHex(args);
@@ -18,15 +18,15 @@ module.exports.rgbaToHex = function rgbaToHex(rgba_params_here)
 
 module.exports.hexToRgba = function hexToRgba(hex)
 {
-    var valid = new RegExp(/^#([0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{3})$/i);
+    var valid = new RegExp(/^#([0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{4}|[0-9a-f]{3})$/i);
 
-    if (! valid.test(hex) )
+    if (! valid.test(hex))
         return false;
 
-    var code = hex.match( valid )[1];
+    var code = hex.match(valid)[1];
 
-    if (code.length == 3)                                   // fix 3 letter codes
-        code = code.match(/./g).map( function(e) { return e+e; });
+    if (code.length == 3 || code.length == 4)               // fix 3 and 4 letter codes
+        code = code.match(/./g).reduce( function(i,e) { return i+e+e; }, '');
 
     var codePairs = code.match(/.{1,2}/g).map( function(e) { return parseInt(e, 16); });
 
