@@ -3,11 +3,11 @@
 Convert HEX to RGBA and back
 
 ## Installation
-
+```sh
     npm install --save hex-and-rgba
-
+```
 ## Usage
-
+```js
     var rgbaToHex   = require('hex-and-rgba').rgbaToHex;
     var hexToRgba   = require('hex-and-rgba').hexToRgba;
     var isValidHex  = require('hex-and-rgba').isValidHex;
@@ -21,9 +21,9 @@ Convert HEX to RGBA and back
 
     var isHex  = isValidHex('#1B2B34cc');           // true
     var isRgba = isValidRgba(27, 43, 52, 0.8);      // true
-
+```
 ## ES6 + ESM usage
-
+```js
     // single function import
     import {hexToRgba} from 'hex-and-rgba';
     
@@ -33,7 +33,7 @@ Convert HEX to RGBA and back
     // in template string usage
     let info = `css rgba color value: ${hexToRgba('#1B2B34cc')}`;
     // will output 'css rgba color value: rgba(27,43,52,0.8)'
-
+```
 ## Note
 
 - alpha is an optional argument on both functions,
