@@ -11,9 +11,13 @@
     "hex",
     "rgba",
     "convert",
-    "colors"
+    "colors",
+    "simple",
+    "rgb",
+    "css",
+    "html"
   ],
-  "author": "BananaAcid",
+  "author": "Nabil Redmann <repo@BananaAcid.de>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/BananaAcid/hex-and-rgba/issues"

@@ -13,13 +13,14 @@ Convert HEX to RGBA and back
     var isValidHex  = require('hex-and-rgba').isValidHex;
     var isValidRgba = require('hex-and-rgba').isValidRgba;
 
-    var hex  = rgbaToHex(27, 43, 52, 0.8);       // '#1b2b34cc'
-    var rgba = hexToRgba('#1B2B34cc');           // [ 27, 43, 52, 0.8 ]
+    var hex  = rgbaToHex(27, 43, 52, 0.8);          // '#1b2b34cc'
+    var rgba = hexToRgba('#1B2B34cc');              // [ 27, 43, 52, 0.8 ]
 
-    var rbaStr = 'c: ' + hexToRgba('#1B2B34cc'); // 'c: rgba(27,43,52,0.8)'
+    var rbaStr = 'c: ' + hexToRgba('#1B2B34cc');    // 'c: rgba(27,43,52,0.8)'
+    var rbaStr = hexToRgba('#1B2B34cc').toString(); // 'rgba(27,43,52,0.8)'
 
-    var isHex  = isValidHex('#1B2B34cc');        // true
-    var isRgba = isValidRgba(27, 43, 52, 0.8);   // true
+    var isHex  = isValidHex('#1B2B34cc');           // true
+    var isRgba = isValidRgba(27, 43, 52, 0.8);      // true
 
 ## ES6 + ESM usage
 
