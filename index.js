@@ -1,7 +1,11 @@
 'use strict';
 
+
 // Note: it is not '#?' , because I want all HEX code strings to contain the leading hash char.
 var validHex = new RegExp(/^#([0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{4}|[0-9a-f]{3})$/i);
+
+// global Object for export
+var hexAndRgba = {};
 
 /**
  * Check an RGBA value set for validity
@@ -11,7 +15,7 @@ var validHex = new RegExp(/^#([0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{4}|[0-9a-f]{3})$/
  * @param {float}  [a]  from 0.0 to 1.0
  * @returns {boolean}
  */
-module.exports.isValidRgba = function isValidRgba(r,g,b,a)
+hexAndRgba.isValidRgba = function isValidRgba(r,g,b,a)
 {
     return !!this.rgbaToHex.apply(this, arguments);
 }
@@ -21,7 +25,7 @@ module.exports.isValidRgba = function isValidRgba(r,g,b,a)
  * @param {string} hex  a HEX code string to check
  * @returns {boolean}
  */
-module.exports.isValidHex = function isValidHex(hex)
+hexAndRgba.isValidHex = function isValidHex(hex)
 {
     return validHex.test(hex);
 }
@@ -34,7 +38,7 @@ module.exports.isValidHex = function isValidHex(hex)
  * @param {float}  [a]  from 0.0 to 1.0
  * @returns {string|false}  HEX code string in lowercase
  */
-module.exports.rgbaToHex = function rgbaToHex(r,g,b,a)
+hexAndRgba.rgbaToHex = function rgbaToHex(r,g,b,a)
 {
     if (arguments.length < 3 || arguments.length > 4)       // arguments length check
         return false;
@@ -56,7 +60,7 @@ module.exports.rgbaToHex = function rgbaToHex(r,g,b,a)
  * @param {string} hex  a HEX code string to check
  * @returns {Array|false}
  */
-module.exports.hexToRgba = function hexToRgba(hex)
+hexAndRgba.hexToRgba = function hexToRgba(hex)
 {
     if (! this.isValidHex(hex))
         return false;
@@ -73,5 +77,24 @@ module.exports.hexToRgba = function hexToRgba(hex)
     else
         codePairs[3] = 1.0;
 
+    // allow string access
+    codePairs.toString = function() { 
+        return 'rgba(' + this[0] + ',' + this[1] + ','+ this[2] + ','+ this[3].toFixed(1) + ')';
+    }
+
     return codePairs;
+}
+
+
+// AMD, CommonJS, Browser
+if (typeof define === 'function' && define.amd) {
+    define(function () {
+        return hexAndRgba;
+    });
+}
+else if (typeof module !== 'undefined' && module.exports) {
+    module.exports = hexAndRgba;
+}
+else {
+    window.hexAndRgba = hexAndRgba;
 }
