@@ -48,33 +48,33 @@ Expected result
 
 $ npm run test
 
-> hex-and-rgba@1.3.0 test D:\GitHub\hex-and-rgba               
-> node tests/tests.js                                          
-                                                               
-RGBA to HEX:                                                   
-27, 43, 52 => '#1b2b34' ---------------> OK                    
-27, 43, 52, 1 => '#1b2b34ff' ---------------> OK               
-27, 43, 52, 0.8 => '#1b2b34cc' ---------------> OK             
-27, "++", 52, 0.8 => false ---------------> OK                 
-27, 43, 52, 0.8, 11 => false ---------------> OK               
----                                                            
-HEX TO RGBA:                                                   
-#1B2 => [ 17, 187, 34, 1 ] ---------------> OK                 
-#1B2c => [ 17, 187, 34, 0.8 ] ---------------> OK              
-#1B2B34 => [ 27, 43, 52, 1 ] ---------------> OK               
-#1B2B34cc => [ 27, 43, 52, 0.8 ] ---------------> OK           
-#1B2+ => false ---------------> OK                             
----                                                            
-Test if it is a valid HEX:                                     
-#1B2B34cc => true ---------------> OK                          
-#1B2+-<.# => false ---------------> OK                         
----                                                            
-Test if it is a valid RGBA:                                    
-27, 43, 52, 0.8 => true ---------------> OK                    
-27, 43, 52, 0.8, 11 => false ---------------> OK               
----                                                            
-accessing hexToRgba as string ( triggering .toString() ):      
-#1B2 => 'rgba(17,187,34,1.0)' ---------------> OK              
-#1B2c => 'rgba(17,187,34,0.8)' ---------------> OK             
----                                                            
+> hex-and-rgba@1.3.0 test D:\GitHub\hex-and-rgba
+> node tests/tests.js
+
+RGBA to HEX:
+27, 43, 52 => '#1b2b34' ---------------> OK
+27, 43, 52, 1 => '#1b2b34ff' ---------------> OK
+27, 43, 52, 0.8 => '#1b2b34cc' ---------------> OK
+27, "++", 52, 0.8 => false ---------------> OK
+27, 43, 52, 0.8, 11 => false ---------------> OK
+---
+HEX TO RGBA:
+#1B2 => [ 17, 187, 34, 1 ] ---------------> OK
+#1B2c => [ 17, 187, 34, 0.8 ] ---------------> OK
+#1B2B34 => [ 27, 43, 52, 1 ] ---------------> OK
+#1B2B34cc => [ 27, 43, 52, 0.8 ] ---------------> OK
+#1B2+ => false ---------------> OK
+---
+Test if it is a valid HEX:
+#1B2B34cc => true ---------------> OK
+#1B2+-<.# => false ---------------> OK
+---
+Test if it is a valid RGBA:
+27, 43, 52, 0.8 => true ---------------> OK
+27, 43, 52, 0.8, 11 => false ---------------> OK
+---
+accessing hexToRgba as string ( triggering .toString() ):
+#1B2 => 'rgba(17,187,34,1.0)' ---------------> OK
+#1B2c => 'rgba(17,187,34,0.8)' ---------------> OK
+---
 */

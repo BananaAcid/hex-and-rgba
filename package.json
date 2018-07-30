@@ -1,6 +1,6 @@
 {
   "name": "hex-and-rgba",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Convert HEX with alpha to RGBA and back",
   "main": "index.js",
   "repository": {
@@ -15,7 +15,10 @@
     "simple",
     "rgb",
     "css",
-    "html"
+    "html",
+    "browser",
+    "esm",
+    "es6"
   ],
   "author": "Nabil Redmann <repo@BananaAcid.de>",
   "license": "MIT",
