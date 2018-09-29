@@ -70,6 +70,8 @@ isValidRgba(27, 43, 52, 0.8)      ==  true
 isValidRgba(27, 43, 52, 0.8, 11)  ==  false                 // too many params
 hexToRgba('#1B2')+'',             ==  'rgba(17,187,34,1.0)'
 hexToRgba('#1B2c')+'',            ==  'rgba(17,187,34,0.8)'
+
+rgbaToHex.apply(null, [17, 187, 34, 1.0]) == '#11BB22'
 ```
 
 ## Changes
