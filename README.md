@@ -87,7 +87,7 @@ hexToRgba('#1B2c').toString()     ==  'rgba(17,187,34,0.8)'
 
 rgbaToHex([17, 187, 34, 1.0])               == '#11BB22'                      // using an array as argument
 rgbaToArray('rgba(255,55, 255, 1.0);')      == [255, 55, 255, 1.0]            // getting an array from RGBA css string (semicolon is ignored)
-rgbaToArray('abc 255, 55, 255, 1.0').toString() == 'rgba(255, 55, 255, 1.0)'  // use it to clean up a string
+rgbaToArray('abc 255, 55, 255, 1.0').toString() == 'rgba(255,55,255,1.0)'  // use it to clean up a string
 ```
 
 ## Changes
