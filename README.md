@@ -84,8 +84,8 @@ hexToRgba('#1B2') + ''            ==  'rgba(17,187,34,1.0)'
 hexToRgba('#1B2c') + ''           ==  'rgba(17,187,34,0.8)'
 hexToRgba('#1B2c').toString()     ==  'rgba(17,187,34,0.8)'
 
-rgbaToHex.apply(null, [17, 187, 34, 1.0])      == '#11BB22'
-'rgba(255,55, 255, 1.0);'.match(/([0-9\.]+)/g) == [255, 55, 255, 1.0]
+rgbaToHex.apply(null, [17, 187, 34, 1.0])      == '#11BB22'            // using an array as argument
+'rgba(255,55, 255, 1.0);'.match(/([0-9\.]+)/g) == [255, 55, 255, 1.0]  // getting an array from RGBA
 ```
 
 ## Changes
