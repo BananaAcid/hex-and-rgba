@@ -85,14 +85,15 @@ hexToRgba('#1B2c') + ''           ==  'rgba(17,187,34,0.8)'
 hexToRgba('#1B2c').toString()     ==  'rgba(17,187,34,0.8)'
 
 
-rgbaToHex([17, 187, 34, 1.0])           == '#11BB22'            // using an array as argument
-rgbaToArray('rgba(255,55, 255, 1.0);')  == [255, 55, 255, 1.0]  // getting an array from RGBA css string (semicolon is ignored)
+rgbaToHex([17, 187, 34, 1.0])               == '#11BB22'                      // using an array as argument
+rgbaToArray('rgba(255,55, 255, 1.0);')      == [255, 55, 255, 1.0]            // getting an array from RGBA css string (semicolon is ignored)
+rgbaToArray('abc 255, 55, 255, 1.0').toString() == 'rgba(255, 55, 255, 1.0)'  // use it to clean up a string
 ```
 
 ## Changes
 
 1.3.2 - 21 Nov 2018
-added rgbaToHex to use an array wiht RGBA as param
+added rgbaToHex to use an array with RGBA as param
 added rgbaToArray to parse an css rgba string
 changed functions not refering to this, so using the functions from a variable would work without bind (easier on browser)
 
