@@ -6,6 +6,7 @@ Convert HEX to RGBA and back
 ```sh
 npm install --save hex-and-rgba
 ```
+
 ## Usage
 ```js
 var rgbaToHex   = require('hex-and-rgba').rgbaToHex;
@@ -22,6 +23,16 @@ var rbaStr = hexToRgba('#1B2B34cc').toString(); // 'rgba(27,43,52,0.8)'
 var isHex  = isValidHex('#1B2B34cc');           // true
 var isRgba = isValidRgba(27, 43, 52, 0.8);      // true
 ```
+
+## Vanilla usage in browser
+```html
+<script src="vendor/hex-and-rgba/index.js></script>
+```
+```js
+var rgbaToHex = hexAndRgba.rgbaToHex;
+var hex  = rgbaToHex(27, 43, 52, 0.8);  // '#1b2b34cc'
+```
+
 ## ES6 + ESM usage
 ```js
 // single function import
@@ -34,6 +45,7 @@ const [red,green,blue, alpha] = hexToRgba('#1B2B34cc');
 let info = `css rgba color value: ${hexToRgba('#1B2B34cc')}`;
 // will output 'css rgba color value: rgba(27,43,52,0.8)'
 ```
+
 ## Note
 
 - alpha is an optional argument on both functions,
@@ -68,8 +80,9 @@ isValidHex('#1B2B34cc')           ==  true
 isValidHex('#1B2+-<.#')           ==  false                 // not allowed chars
 isValidRgba(27, 43, 52, 0.8)      ==  true 
 isValidRgba(27, 43, 52, 0.8, 11)  ==  false                 // too many params
-hexToRgba('#1B2')+'',             ==  'rgba(17,187,34,1.0)'
-hexToRgba('#1B2c')+'',            ==  'rgba(17,187,34,0.8)'
+hexToRgba('#1B2') + ''            ==  'rgba(17,187,34,1.0)'
+hexToRgba('#1B2c') + ''           ==  'rgba(17,187,34,0.8)'
+hexToRgba('#1B2c').toString()     ==  'rgba(17,187,34,0.8)'
 
 rgbaToHex.apply(null, [17, 187, 34, 1.0])      == '#11BB22'
 'rgba(255,55, 255, 1.0);'.match(/([0-9\.]+)/g) == [255, 55, 255, 1.0]
