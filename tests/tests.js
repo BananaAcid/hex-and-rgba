@@ -39,8 +39,9 @@ d('27, 43, 52, 0.8, 11', HAR.isValidRgba(27, 43, 52, 0.8, 11), false);        //
 x();
 
 h('accessing hexToRgba as string ( triggering .toString() )');
-d('#1B2',      HAR.hexToRgba('#1B2')+'',      'rgba(17,187,34,1.0)');
-d('#1B2c',     HAR.hexToRgba('#1B2c')+'',     'rgba(17,187,34,0.8)');
+d('#1B2',      HAR.hexToRgba('#1B2')+'',          'rgba(17,187,34,1.0)');
+d('#1B2c',     HAR.hexToRgba('#1B2c')+'',         'rgba(17,187,34,0.8)');
+d('#1B2c',     HAR.hexToRgba('#1B2c').toString(), 'rgba(17,187,34,0.8)');
 x()
 
 /*

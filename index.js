@@ -5,7 +5,8 @@
 var validHex = new RegExp(/^#([0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{4}|[0-9a-f]{3})$/i);
 
 // global Object for export
-var hexAndRgba = {};
+var hexAndRgba = {},
+    self = hexAndRgba;
 
 /**
  * Check an RGBA value set for validity
@@ -17,7 +18,7 @@ var hexAndRgba = {};
  */
 hexAndRgba.isValidRgba = function isValidRgba(r,g,b,a)
 {
-    return !!this.rgbaToHex.apply(this, arguments);
+    return !!self.rgbaToHex.apply(self, arguments);
 }
 
 /**
@@ -62,7 +63,7 @@ hexAndRgba.rgbaToHex = function rgbaToHex(r,g,b,a)
  */
 hexAndRgba.hexToRgba = function hexToRgba(hex)
 {
-    if (! this.isValidHex(hex))
+    if (! self.isValidHex(hex))
         return false;
 
     var code = hex.match(validHex)[1];
