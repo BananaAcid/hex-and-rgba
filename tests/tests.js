@@ -42,14 +42,22 @@ h('accessing hexToRgba as string ( triggering .toString() )');
 d('#1B2',      HAR.hexToRgba('#1B2')+'',          'rgba(17,187,34,1.0)');
 d('#1B2c',     HAR.hexToRgba('#1B2c')+'',         'rgba(17,187,34,0.8)');
 d('#1B2c',     HAR.hexToRgba('#1B2c').toString(), 'rgba(17,187,34,0.8)');
-x()
+x();
+
+h('array handling');
+d('[27, 43, 52]',             HAR.rgbaToHex([27, 43, 52]),                     '#1B2B34'              );
+d('[27, 43, 52, .8]',         HAR.rgbaToHex([27, 43, 52, 0.8]),                '#1B2B34cc'            );
+d('rgba(255, 55, 255, 1.0);', HAR.rgbaToArray('rgba(255,55, 255, 1.0);'),      [255, 55, 255, 1.0]    );
+d('rgba(255, 55, 255, 1.0);', HAR.rgbaToArray('rgba(255,55, 255, 1.0);') + '', 'rgba(255,55,255,1.0)' );
+d('255 - 55 - 255 - 1.0',     HAR.rgbaToArray('255 - 55 - 255 - 1.0') + '',    'rgba(255,55,255,1.0)' );
+x();
 
 /*
 Expected result
 
-$ npm run test
+$ npm test
 
-> hex-and-rgba@1.3.0 test D:\GitHub\hex-and-rgba
+> hex-and-rgba@1.3.2 test D:\GitHub\hex-and-rgba
 > node tests/tests.js
 
 RGBA to HEX:
@@ -77,5 +85,12 @@ Test if it is a valid RGBA:
 accessing hexToRgba as string ( triggering .toString() ):
 #1B2 => 'rgba(17,187,34,1.0)' ---------------> OK
 #1B2c => 'rgba(17,187,34,0.8)' ---------------> OK
+#1B2c => 'rgba(17,187,34,0.8)' ---------------> OK
+---
+array handling:
+[27, 43, 52] => '#1b2b34' ---------------> OK
+[27, 43, 52, .8] => '#1b2b34cc' ---------------> OK
+rgba(255, 55, 255, 1.0); => [ 255, 55, 255, 1 ] ---------------> OK
+rgba(255, 55, 255, 1.0); => 'rgba(255,55,255,1.0)' ---------------> OK
 ---
 */

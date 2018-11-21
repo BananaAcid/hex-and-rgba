@@ -4,6 +4,11 @@
 // Note: it is not '#?' , because I want all HEX code strings to contain the leading hash char.
 var validHex = new RegExp(/^#([0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{4}|[0-9a-f]{3})$/i);
 
+// array to rgba string converter
+var rgbaArrToString = function() { 
+    return 'rgba(' + this[0] + ',' + this[1] + ','+ this[2] + ','+ this[3].toFixed(1) + ')';
+};
+
 // global Object for export
 var hexAndRgba = {},
     self = hexAndRgba;
@@ -37,10 +42,14 @@ hexAndRgba.isValidHex = function isValidHex(hex)
  * @param {number} g    from 0 to 255 
  * @param {number} b    from 0 to 255
  * @param {float}  [a]  from 0.0 to 1.0
+ * @param {Array}  r    array with the RGBA values
  * @returns {string|false}  HEX code string in lowercase
  */
 hexAndRgba.rgbaToHex = function rgbaToHex(r,g,b,a)
 {
+    if (arguments.length == 1 && Array.isArray(arguments[0]))
+        return self.rgbaToHex.apply(null, arguments[0]);    // allow array as params substitution
+
     if (arguments.length < 3 || arguments.length > 4)       // arguments length check
         return false;
 
@@ -70,7 +79,7 @@ hexAndRgba.hexToRgba = function hexToRgba(hex)
 
     if (code.length == 3 || code.length == 4)               // fix 3 and 4 letter codes
         code = code.match(/./g).reduce( function(i,e) { return i+e+e; }, '');
-
+                                                            // convert to int from hex
     var codePairs = code.match(/.{1,2}/g).map( function(e) { return parseInt(e, 16); });
 
     if (codePairs.length == 4)
@@ -79,9 +88,27 @@ hexAndRgba.hexToRgba = function hexToRgba(hex)
         codePairs[3] = 1.0;
 
     // allow string access
-    codePairs.toString = function() { 
-        return 'rgba(' + this[0] + ',' + this[1] + ','+ this[2] + ','+ this[3].toFixed(1) + ')';
-    }
+    codePairs.toString = rgbaArrToString;
+
+    return codePairs;
+}
+
+/**
+ * get the RGBA values from an rgba String
+ * @param {string} rgba
+ * @returns {Array|false}
+ */
+hexAndRgba.rgbaToArray = function rgbaToArray(rgba)
+{
+                                                            // convert string to int
+    var codePairs = rgba.match(/([0-9\.]+)/g).map( function(e) { return +e; });
+
+
+    if (codePairs.length < 3 || codePairs.length > 4)       // arguments length check
+        return false;
+
+    // allow string access
+    codePairs.toString = rgbaArrToString;
 
     return codePairs;
 }
