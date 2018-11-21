@@ -92,7 +92,7 @@ rgbaToArray('rgba(255,55, 255, 1.0);')  == [255, 55, 255, 1.0]  // getting an ar
 ## Changes
 
 1.3.2 - 21 Nov 2018
-added rgbaToHex to use an array wiht RGBA as param
+added rgbaToHex to use an array with RGBA as param
 added rgbaToArray to parse an css rgba string
 changed functions not refering to this, so using the functions from a variable would work without bind (easier on browser)
 
