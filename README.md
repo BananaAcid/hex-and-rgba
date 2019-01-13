@@ -90,7 +90,42 @@ rgbaToArray('rgba(255,55, 255, 1.0);')      == [255, 55, 255, 1.0]            //
 rgbaToArray('abc 255, 55, 255, 1.0').toString() == 'rgba(255,55,255,1.0)'  // use it to clean up a string
 ```
 
+## Commandline usage (Bash, Windows)
+`hex-and-rgba [-shr] <value>` (bridge to `rgbatohex` and `hextorgba`)
+```bash
+# without package installation, only node must be installed 
+$ npx hex-and-rgba -r "rgba(....)"
+#
+# or
+#
+$ npm i hex-and-rgba -g
+$ hex-and-rgba -r "rgba(....)"
+$ hex-and-rgba -h "#1B2B34cc"
+$ hex-and-rgba -h -s "#1B2B34cc"
+```
+
+`rgbatohex <rgba>`
+```bash
+$ npm i hex-and-rgba -g
+$ rgbatohex "rgba(....)"
+$ rgbatohex 123,123,123,1.0      
+$ rgbatohex 123 123 123 1.0
+```
+
+`hextorgba [-s] <hex>`
+```bash
+$ npm i hex-and-rgba -g
+$ hextorgba "#1B2B34cc"
+$ hextorgba 1B2B34cc
+$ hextorgba 1B 2B 34 cc
+```
+default out: `[ 123, 123, 123, 0.8 ]`
+with `-s` as css rgba: `rgba(123,123,123,0.8)`
+
 ## Changes
+
+1.3.3 - 13 Jan 2019
+added commandline scripts
 
 1.3.2 - 21 Nov 2018
 added rgbaToHex to use an array with RGBA as param

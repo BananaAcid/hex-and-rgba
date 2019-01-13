@@ -1,11 +1,15 @@
 {
   "name": "hex-and-rgba",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Convert HEX with alpha to RGBA and back",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BananaAcid/hex-and-rgba.git"
+  },
+  "bin": {
+    "rgbatohex": "bin/rgbatohex.js",
+    "hextorgba": "bin/hextorgba.js"
   },
   "keywords": [
     "hex",
