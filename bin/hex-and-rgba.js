@@ -1,4 +1,4 @@
-#! /usr/bin/node
+#!/usr/bin/env node
 
 let args = process.argv.slice(2);
 
@@ -23,7 +23,7 @@ if (!args.length || (!modR && !modH)) {
     let name = process.argv.pop().split(/[\/|\\]/).pop().replace('.js','') + o.e;
 
     console.info(`${name} (${package.name} v${package.version})`);
-    console.info(`${package.author}`);
+    console.info(`Nabil Redmann <repo@BananaAcid.de>`);
     console.info(`${package.homepage}`);
     console.info(`\nusage: ${name} [-shr] <value>`);
     console.info(`\nparams:`);

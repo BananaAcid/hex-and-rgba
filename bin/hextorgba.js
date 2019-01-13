@@ -1,4 +1,4 @@
-#! /usr/bin/node
+#!/usr/bin/env node
 
 // remove node binary and script name from params
 let args = global.args || process.argv.slice(2);
@@ -16,7 +16,7 @@ if (!args.length) {
     let name = process.argv.pop().split(/[\/|\\]/).pop().replace('.js','') + o.e;
 
     console.info(`${name} (${package.name} v${package.version})`);
-    console.info(`${package.author}`);
+    console.info(`Nabil Redmann <repo@BananaAcid.de>`);
     console.info(`${package.homepage}`);
     console.info(`\nusage: ${name} [-s] <hex>`);
     console.info(`\nparams:`);
