@@ -11,17 +11,19 @@ npm install --save hex-and-rgba
 ```js
 var rgbaToHex   = require('hex-and-rgba').rgbaToHex;
 var hexToRgba   = require('hex-and-rgba').hexToRgba;
+var aHexToRgba  = require('hex-and-rgba').aHexToRgba;
 var isValidHex  = require('hex-and-rgba').isValidHex;
 var isValidRgba = require('hex-and-rgba').isValidRgba;
 
-var hex  = rgbaToHex(27, 43, 52, 0.8);          // '#1b2b34cc'
-var rgba = hexToRgba('#1B2B34cc');              // [ 27, 43, 52, 0.8 ]
+var hex  = rgbaToHex(27, 43, 52, 0.8);           // '#1b2b34cc'
+var rgba = hexToRgba('#1B2B34cc');               // [ 27, 43, 52, 0.8 ]
 
-var rbaStr = 'c: ' + hexToRgba('#1B2B34cc');    // 'c: rgba(27,43,52,0.8)'
-var rbaStr = hexToRgba('#1B2B34cc').toString(); // 'rgba(27,43,52,0.8)'
+var rbaStr = 'c: ' + hexToRgba('#1B2B34cc');     // 'c: rgba(27,43,52,0.8)'
+var rbaStr = hexToRgba('#1B2B34cc').toString();  // 'rgba(27,43,52,0.8)'
+var rbaStr = aHexToRgba('#cc1B2B34').toString(); // 'rgba(27,43,52,0.8)'
 
-var isHex  = isValidHex('#1B2B34cc');           // true
-var isRgba = isValidRgba(27, 43, 52, 0.8);      // true
+var isHex  = isValidHex('#1B2B34cc');            // true
+var isRgba = isValidRgba(27, 43, 52, 0.8);       // true
 ```
 
 ## Vanilla usage in browser
@@ -54,6 +56,7 @@ let info = `css rgba color value: ${hexToRgba('#1B2B34cc')}`;
 - hex codes will always be in lowercase
 - check out the tests file for examples - it has the expected results appended
 - hexToRgba will output an `rgba()` string if accessed as string and will the alpha value will always have 1 decimal (0 -> 0.0, 1 -> 1.0)
+- aHexToRgba(): for aHEX (ARGB, AARRGGBB) used on [Android](https://developer.android.com/guide/topics/resources/more-resources.html#Color), the alpha value is first instead of last. 
 
 ## Hex formats
 ```
@@ -76,7 +79,13 @@ hexToRgba('#1B2c')                ==  [17, 187, 34, 0.8]
 hexToRgba('#1B2B34')              ==  [27,  43, 52, 1.0]
 hexToRgba('#1B2B34cc')            ==  [27,  43, 52, 0.8]
 hexToRgba('#1B2+')                ==  false                 // not allowed chars
+aHexToRgba('#1B2')                ==  [17, 187, 34, 1.0]
+aHexToRgba('#c1B2')               ==  [17, 187, 34, 0.8]
+aHexToRgba('#1B2B34')             ==  [27,  43, 52, 1.0]
+aHexToRgba('#cc1B2B34')           ==  [27,  43, 52, 0.8]
+aHexToRgba('#+1B2')               ==  false                 // not allowed chars
 isValidHex('#1B2B34cc')           ==  true 
+isValidHex('#cc1B2B34')           ==  true 
 isValidHex('#1B2+-<.#')           ==  false                 // not allowed chars
 isValidRgba(27, 43, 52, 0.8)      ==  true 
 isValidRgba(27, 43, 52, 0.8, 11)  ==  false                 // too many params
@@ -91,7 +100,7 @@ rgbaToArray('abc 255, 55, 255, 1.0').toString() == 'rgba(255,55,255,1.0)'  // us
 ```
 
 ## Commandline usage (Bash, Windows)
-`hex-and-rgba [-shr] <value>` (bridge to `rgbatohex` and `hextorgba`)
+`hex-and-rgba [-srha] <value>` (bridge to `rgbatohex`, `hextorgba` and `ahextorgba`)
 ```bash
 # without package installation, only node must be installed 
 $ npx hex-and-rgba -r "rgba(....)"
@@ -102,6 +111,8 @@ $ npm i hex-and-rgba -g
 $ hex-and-rgba -r "rgba(....)"
 $ hex-and-rgba -h "#1B2B34cc"
 $ hex-and-rgba -h -s "#1B2B34cc"
+$ hex-and-rgba -a "#cc1B2B34cc"
+$ hex-and-rgba -a -s "#cc1B2B34"
 ```
 
 `rgbatohex <rgba>`
@@ -122,7 +133,21 @@ $ hextorgba 1B 2B 34 cc
 default out: `[ 123, 123, 123, 0.8 ]`
 with `-s` as css rgba: `rgba(123,123,123,0.8)`
 
+`ahextorgba [-s] <ahex>`
+```bash
+$ npm i hex-and-rgba -g
+$ ahextorgba "#cc1B2B34"
+$ ahextorgba cc1B2B34
+$ ahextorgba cc 1B 2B 34
+```
+default out: `[ 123, 123, 123, 0.8 ]`
+with `-s` as css rgba: `rgba(123,123,123,0.8)`
+
 ## Changes
+
+1.4.0 - 03 Nov 2019
+added aHex added (Android style HEX)
+added aHex commandline script
 
 1.3.3 - 13 Jan 2019
 added commandline scripts

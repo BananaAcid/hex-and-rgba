@@ -1,7 +1,7 @@
 {
   "name": "hex-and-rgba",
-  "version": "1.3.5",
-  "description": "Convert HEX with alpha to RGBA and back",
+  "version": "1.4.0",
+  "description": "Convert HEX/HEXa/aHEX with alpha to RGBa and back",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -10,16 +10,19 @@
   "bin": {
     "rgbatohex": "bin/rgbatohex.js",
     "hextorgba": "bin/hextorgba.js",
+    "ahextorgba": "bin/ahextorgba.js",
     "hexandrgba": "bin/hex-and-rgba.js",
     "hex-and-rgba": "bin/hex-and-rgba.js"
   },
   "keywords": [
     "hex",
+    "hexa",
+    "ahex",
+    "rgb",
     "rgba",
     "convert",
-    "colors",
+    "color",
     "simple",
-    "rgb",
     "css",
     "html",
     "browser",
@@ -37,6 +40,7 @@
     "iojs": ">= 1.0.0"
   },
   "scripts": {
+    "start": "wsl -e \"node tests/tests.js\"",
     "test": "node tests/tests.js"
   }
 }

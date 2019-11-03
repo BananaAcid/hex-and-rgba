@@ -27,8 +27,8 @@ hexAndRgba.isValidRgba = function isValidRgba(r,g,b,a)
 }
 
 /**
- * Check a HEX code for validity
- * @param {string} hex  a HEX code string to check
+ * Check a HEX/aHex code for validity
+ * @param {string} hex  a HEX/aHex code string to check
  * @returns {boolean}
  */
 hexAndRgba.isValidHex = function isValidHex(hex)
@@ -86,6 +86,37 @@ hexAndRgba.hexToRgba = function hexToRgba(hex)
         codePairs[3] = codePairs[3] / 255;
     else
         codePairs[3] = 1.0;
+
+    // allow string access
+    codePairs.toString = rgbaArrToString;
+
+    return codePairs;
+}
+
+/**
+ * convert a aHEX code string to a RGBA value set
+ * @param {string} ahex  an aHEX code string to check (ARGB, AARRGGBB)
+ * @returns {Array|false}
+ */
+hexAndRgba.aHexToRgba = function aHexToRgba(ahex)
+{
+    if (! self.isValidHex(ahex))
+        return false;
+
+    var code = ahex.match(validHex)[1];
+
+    if (code.length == 3 || code.length == 4)               // fix 3 and 4 letter codes
+        code = code.match(/./g).reduce( function(i,e) { return i+e+e; }, '');
+                                                            // convert to int from hex
+    var codePairs = code.match(/.{1,2}/g).map( function(e) { return parseInt(e, 16); });
+
+    if (codePairs.length == 4) {
+        codePairs[0] = codePairs[0] / 255;
+        var part = codePairs.shift();
+        codePairs.push(part);
+    }
+    else
+        codePairs.push(1.0);
 
     // allow string access
     codePairs.toString = rgbaArrToString;

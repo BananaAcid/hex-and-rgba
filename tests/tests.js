@@ -28,6 +28,14 @@ d('#1B2B34cc', HAR.hexToRgba('#1B2B34cc'), [27,  43, 52, 0.8]);
 d('#1B2+',     HAR.hexToRgba('#1B2+'),     false             );               // not allowed chars
 x();
 
+h('aHEX TO RGBA');
+d('#1B2',      HAR.aHexToRgba('#1B2'),      [17, 187, 34, 1.0]);
+d('#c1B2',     HAR.aHexToRgba('#c1B2'),     [17, 187, 34, 0.8]);
+d('#1B2B34',   HAR.aHexToRgba('#1B2B34'),   [27,  43, 52, 1.0]);
+d('#cc1B2B34', HAR.aHexToRgba('#cc1B2B34'), [27,  43, 52, 0.8]);
+d('#+1B2',     HAR.aHexToRgba('#+1B2'),     false             );               // not allowed chars
+x();
+
 h('Test if it is a valid HEX');
 d('#1B2B34cc', HAR.isValidHex('#1B2B34cc'), true );
 d('#1B2+-<.#', HAR.isValidHex('#1B2+-<.#'), false);                           // not allowed chars

@@ -8,6 +8,11 @@ if (modH !== -1)
     delete args[modH];
 modH = modH != -1;
 
+let modA = args.indexOf('-a');
+if (modA !== -1)
+    delete args[modA];
+modA = modA != -1;
+
 let modR = args.indexOf('-r');
 if (modR !== -1)
     delete args[modR];
@@ -16,7 +21,7 @@ modR = modR != -1;
 global.args = args;
 
 
-if (!args.length || (!modR && !modH)) {
+if (!args.length || (!modR && !modA && !modH)) {
     let package = require('../package.json');
 
     let o = (process.platform == "win32" || process.platform == "win64") ? {s: '\>', e: '.exe'} : {s: '$', e: ''}; 
@@ -29,6 +34,8 @@ if (!args.length || (!modR && !modH)) {
     console.info(`\nparams:`);
     console.info(`  -h      hex to rgba`);
     console.info(`  -h -s   hex to rgba, out as css rgba string`);
+    console.info(`  -a      ahex to rgba`);
+    console.info(`  -a -s   ahex to rgba, out as css rgba string`);
     console.info(`  -r      rgba to hex`);
     console.info(`\nexamples:`);
     console.info(o.s + ` ${name} -h "#7b7b7bcc"                => [ 123, 123, 123, 0.8 ]`);
@@ -39,6 +46,10 @@ if (!args.length || (!modR && !modH)) {
 	console.info(o.s + ` ${name} -r 123,123,123,.8             => #7b7b7bcc`);
 	console.info(o.s + ` ${name} -r 123,123,123                => #7b7b7b`);
 	console.info(o.s + ` ${name} -r 123 123 123                => #7b7b7b`);
+    console.info(o.s + ` ${name} -a "#cc7b7b7b"                => [ 123, 123, 123, 0.8 ]`);
+    console.info(o.s + ` ${name} -a cc7b7b7b                   => [ 123, 123, 123, 0.8 ]`);
+    console.info(o.s + ` ${name} -a cc 7b 7b 7b                => [ 123, 123, 123, 0.8 ]`);
+    console.info(o.s + ` ${name} -a cc7b7b7b    -s             => rgba(123,123,123,0.8)`);
 	console.info(o.s + ` ${name} something                     => false`);
     console.info('');
 }
@@ -47,6 +58,9 @@ else {
 	if (modR)
 		require('./rgbatohex.js');
 
-	if (modH)
+    if (modA)
+		require('./ahextorgba.js');
+
+    if (modH)
 		require('./hextorgba.js');
 }
