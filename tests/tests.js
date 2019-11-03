@@ -12,12 +12,20 @@ var _ = require('util').inspect
 var HAR = require('../index.js');
 
 
-h('RGBA to HEX');
+h('RGBA to HEXa');
 d('27, 43, 52',          HAR.rgbaToHex(27, 43, 52),          '#1B2B34'  );
 d('27, 43, 52, 1',       HAR.rgbaToHex(27, 43, 52, 1),       '#1B2B34ff');
 d('27, 43, 52, 0.8',     HAR.rgbaToHex(27, 43, 52, 0.8),     '#1B2B34cc');
 d('27, "++", 52, 0.8',   HAR.rgbaToHex(27, '++', 52, 0.8),   false      );    // wrong type at idx 1
 d('27, 43, 52, 0.8, 11', HAR.rgbaToHex(27, 43, 52, 0.8, 11), false      );    // too many params
+x();
+
+h('RGBA to aHEX');
+d('27, 43, 52',          HAR.rgbaToAHex(27, 43, 52),          '#1B2B34'  );
+d('27, 43, 52, 1',       HAR.rgbaToAHex(27, 43, 52, 1),       '#ff1B2B34');
+d('27, 43, 52, 0.8',     HAR.rgbaToAHex(27, 43, 52, 0.8),     '#cc1B2B34');
+d('27, "++", 52, 0.8',   HAR.rgbaToAHex(27, '++', 52, 0.8),   false      );    // wrong type at idx 1
+d('27, 43, 52, 0.8, 11', HAR.rgbaToAHex(27, 43, 52, 0.8, 11), false      );    // too many params
 x();
 
 h('HEX TO RGBA');
@@ -36,7 +44,7 @@ d('#cc1B2B34', HAR.aHexToRgba('#cc1B2B34'), [27,  43, 52, 0.8]);
 d('#+1B2',     HAR.aHexToRgba('#+1B2'),     false             );               // not allowed chars
 x();
 
-h('Test if it is a valid HEX');
+h('Test if it is a valid HEX/HEXa/aHEX');
 d('#1B2B34cc', HAR.isValidHex('#1B2B34cc'), true );
 d('#1B2+-<.#', HAR.isValidHex('#1B2+-<.#'), false);                           // not allowed chars
 x();
@@ -50,6 +58,10 @@ h('accessing hexToRgba as string ( triggering .toString() )');
 d('#1B2',      HAR.hexToRgba('#1B2')+'',          'rgba(17,187,34,1.0)');
 d('#1B2c',     HAR.hexToRgba('#1B2c')+'',         'rgba(17,187,34,0.8)');
 d('#1B2c',     HAR.hexToRgba('#1B2c').toString(), 'rgba(17,187,34,0.8)');
+x();
+
+h('accessing aHexToRgba as string ( triggering .toString() )');
+d('#c1B2',     HAR.aHexToRgba('#c1B2').toString(), 'rgba(17,187,34,0.8)');
 x();
 
 h('array handling');

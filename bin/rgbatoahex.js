@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 (async()=>{
-    // remove node binary and script name from params
 	let args = global.args || process.argv.slice(2);
 
 	let arg2 = -1;
@@ -36,12 +35,12 @@
 		console.info(`\nusage: ${name} [-i] <rgba>`);
 		console.info(`  -i      use pipe in content`);
 		console.info(`\nexamples:`);
-		console.info(o.s + ` ${name} "rgba(123,123,123, .8);"   => #7b7b7bcc`);
-		console.info(o.s + ` ${name} 123,123,123,.8             => #7b7b7bcc`);
+		console.info(o.s + ` ${name} "rgba(123,123,123, .8);"   => #cc7b7b7b`);
+		console.info(o.s + ` ${name} 123,123,123,.8             => #cc7b7b7b`);
 		console.info(o.s + ` ${name} 123,123,123                => #7b7b7b`);
 		console.info(o.s + ` ${name} 123 123 123                => #7b7b7b`);
 		console.info(o.s + ` ${name} something                  => false`);
-		console.info(o.s + ` echo 123,123,123,.8 | ${name} -i   => #7b7b7b`);
+		console.info(o.s + ` echo 123,123,123,.8 | ${name} -i   => #cc7b7b7b`);
 		console.info('');
 	}
 	else {
@@ -49,7 +48,7 @@
 
 		try {
 			let p = args.length == 1 ? HAR.rgbaToArray( args.pop() ) : args; 
-			let result = HAR.rgbaToHex( p );
+			let result = HAR.rgbaToAHex( p );
 			
 			if (result === false) {
 				process.stderr.write('false\n');

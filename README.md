@@ -145,6 +145,15 @@ with `-s` as css rgba: `rgba(123,123,123,0.8)`
 
 ## Changes
 
+1.4.1 - 03 Nov 2019
+added rgbaToAHex()
+changed apha float to be a max of 3 digits after 0
+added -t param to commandline to output as tab seperated rgba
+removed commandline color commands for piping
+changed to properly use stderr
+added -i param to commandline to use piped in content
+changed min requirement to node 7.6 (for command line scripts, include still requires 0.11.16)
+
 1.4.0 - 03 Nov 2019
 added aHex added (Android style HEX)
 added aHex commandline script

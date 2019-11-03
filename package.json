@@ -1,6 +1,6 @@
 {
   "name": "hex-and-rgba",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Convert HEX/HEXa/aHEX with alpha to RGBa and back",
   "main": "index.js",
   "repository": {
@@ -9,6 +9,7 @@
   },
   "bin": {
     "rgbatohex": "bin/rgbatohex.js",
+    "rgbatoahex": "bin/rgbatoahex.js",
     "hextorgba": "bin/hextorgba.js",
     "ahextorgba": "bin/ahextorgba.js",
     "hexandrgba": "bin/hex-and-rgba.js",
@@ -36,8 +37,8 @@
   },
   "homepage": "https://github.com/BananaAcid/hex-and-rgba#readme",
   "engines": {
-    "node": ">= 0.11.16",
-    "iojs": ">= 1.0.0"
+    "node": ">= 7.6",
+    "deno": ">= 1.0"
   },
   "scripts": {
     "start": "wsl -e \"node tests/tests.js\"",

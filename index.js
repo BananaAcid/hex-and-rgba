@@ -66,8 +66,8 @@ hexAndRgba.rgbaToHex = function rgbaToHex(r,g,b,a)
 }
 
 /**
- * convert a HEX code string to a RGBA value set
- * @param {string} hex  a HEX code string to check
+ * convert a HEXa code string to a RGBA value set
+ * @param {string} hex  a HEXa code string to check
  * @returns {Array|false}
  */
 hexAndRgba.hexToRgba = function hexToRgba(hex)
@@ -83,7 +83,7 @@ hexAndRgba.hexToRgba = function hexToRgba(hex)
     var codePairs = code.match(/.{1,2}/g).map( function(e) { return parseInt(e, 16); });
 
     if (codePairs.length == 4)
-        codePairs[3] = codePairs[3] / 255;
+        codePairs[3] = +(codePairs[3] / 255).toPrecision(3);
     else
         codePairs[3] = 1.0;
 
@@ -91,6 +91,38 @@ hexAndRgba.hexToRgba = function hexToRgba(hex)
     codePairs.toString = rgbaArrToString;
 
     return codePairs;
+}
+
+/**
+ * convert a RGBA value set to a aHEX code string
+ * @param {number} r    from 0 to 255
+ * @param {number} g    from 0 to 255 
+ * @param {number} b    from 0 to 255
+ * @param {float}  [a]  from 0.0 to 1.0
+ * @param {Array}  r    array with the RGBA values
+ * @returns {string|false}  aHEX code string in lowercase
+ */
+hexAndRgba.rgbaToAHex = function rgbaToAHex(r,g,b,a)
+{
+    if (arguments.length == 1 && Array.isArray(arguments[0]))
+        return self.rgbaToAHex.apply(null, arguments[0]);    // allow array as params substitution
+
+    if (arguments.length < 3 || arguments.length > 4)       // arguments length check
+        return false;
+
+    var args = Array.prototype.slice.call(arguments);       // Arguments to Array conversion
+    
+    if (args.length == 4) {                                 // is with optional alpha value
+        args[3] = Math.floor(255 * args[3]);                // opacity float to 255-based value
+        var part = args.splice(3, 1)[0];                    // remove alpha part
+        args.unshift(part);                                 // prepend alpha for aHEX
+    }
+
+    var parts = args.map(function(e){ var r = (+e).toString(16); r.length==1 && (r='0'+r); return r; }, []);
+    
+    return (!~parts.indexOf('NaN'))                         // if a part could not be converted to an int, there is a 'NaN'
+        ? '#' + parts.join('')
+        : false;
 }
 
 /**
@@ -111,7 +143,7 @@ hexAndRgba.aHexToRgba = function aHexToRgba(ahex)
     var codePairs = code.match(/.{1,2}/g).map( function(e) { return parseInt(e, 16); });
 
     if (codePairs.length == 4) {
-        codePairs[0] = codePairs[0] / 255;
+        codePairs[0] = +(codePairs[0] / 255).toPrecision(3);
         var part = codePairs.shift();
         codePairs.push(part);
     }
