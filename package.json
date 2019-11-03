@@ -1,6 +1,6 @@
 {
   "name": "hex-and-rgba",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Convert HEX/HEXa/aHEX with alpha to RGBa and back",
   "main": "index.js",
   "repository": {

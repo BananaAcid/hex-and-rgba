@@ -10,6 +10,7 @@ npm install --save hex-and-rgba
 ## Usage
 ```js
 var rgbaToHex   = require('hex-and-rgba').rgbaToHex;
+var rgbaToAHex   = require('hex-and-rgba').rgbaToAHex;
 var hexToRgba   = require('hex-and-rgba').hexToRgba;
 var aHexToRgba  = require('hex-and-rgba').aHexToRgba;
 var isValidHex  = require('hex-and-rgba').isValidHex;
@@ -56,7 +57,7 @@ let info = `css rgba color value: ${hexToRgba('#1B2B34cc')}`;
 - hex codes will always be in lowercase
 - check out the tests file for examples - it has the expected results appended
 - hexToRgba will output an `rgba()` string if accessed as string and will the alpha value will always have 1 decimal (0 -> 0.0, 1 -> 1.0)
-- aHexToRgba(): for aHEX (ARGB, AARRGGBB) used on [Android](https://developer.android.com/guide/topics/resources/more-resources.html#Color), the alpha value is first instead of last. 
+- aHexToRgba(), rgbaToAHex(): for aHEX (ARGB, AARRGGBB) used on [Android](https://developer.android.com/guide/topics/resources/more-resources.html#Color), the alpha value is first instead of last. 
 
 ## Hex formats
 ```
@@ -74,6 +75,11 @@ rgbaToHex(27, 43, 52, 1)          ==  '#1B2B34ff'
 rgbaToHex(27, 43, 52, 0.8)        ==  '#1B2B34cc'
 rgbaToHex(27, '++', 52, 0.8)      ==  false                 // wrong type at idx 1
 rgbaToHex(27, 43, 52, 0.8, 11)    ==  false                 // too many params
+rgbaToAHex(27, 43, 52)            ==  '#1B2B34'  
+rgbaToAHex(27, 43, 52, 1)         ==  '#ff1B2B34'
+rgbaToAHex(27, 43, 52, 0.8)       ==  '#cc1B2B34'
+rgbaToAHex(27, '++', 52, 0.8)     ==  false                 // wrong type at idx 1
+rgbaToAHex(27, 43, 52, 0.8, 11)   ==  false                 // too many params
 hexToRgba('#1B2')                 ==  [17, 187, 34, 1.0]
 hexToRgba('#1B2c')                ==  [17, 187, 34, 0.8]
 hexToRgba('#1B2B34')              ==  [27,  43, 52, 1.0]
@@ -113,6 +119,19 @@ $ hex-and-rgba -h "#1B2B34cc"
 $ hex-and-rgba -h -s "#1B2B34cc"
 $ hex-and-rgba -a "#cc1B2B34cc"
 $ hex-and-rgba -a -s "#cc1B2B34"
+
+  -h      hex to rgba
+  -ah     ahex to rgba
+  -r      rgba to hex
+  -ra     rgba to ahex
+```
+
+params for the specific commands
+```
+  -s      out as css rgba string (for hex* commands only)
+  -t      out as tab seperated rgba parts (for hex* commands only)
+  -n      out as newline seperated rgba parts (for hex* commands only)
+  -i      use pipe in content
 ```
 
 `rgbatohex <rgba>`
@@ -121,6 +140,14 @@ $ npm i hex-and-rgba -g
 $ rgbatohex "rgba(....)"
 $ rgbatohex 123,123,123,1.0      
 $ rgbatohex 123 123 123 1.0
+```
+
+`rgbatoahex <rgba>`
+```bash
+$ npm i hex-and-rgba -g
+$ rgbatoahex "rgba(....)"
+$ rgbatoahex 123,123,123,1.0      
+$ rgbatoahex 123 123 123 1.0
 ```
 
 `hextorgba [-s] <hex>`
@@ -144,6 +171,10 @@ default out: `[ 123, 123, 123, 0.8 ]`
 with `-s` as css rgba: `rgba(123,123,123,0.8)`
 
 ## Changes
+
+1.4.2 - 03 Nov 2019 
+bumped version
+changed readme
 
 1.4.1 - 03 Nov 2019
 added rgbaToAHex()
