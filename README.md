@@ -38,8 +38,8 @@ var hex  = rgbaToHex(27, 43, 52, 0.8);  // '#1b2b34cc'
 
 ## ES6 + ESM usage
 ```js
-// single function import
-import {hexToRgba} from 'hex-and-rgba';
+// single functions import
+import {hexToRgba, isValidRgba} from 'hex-and-rgba';
 
 // array deconstruction:
 const [red,green,blue, alpha] = hexToRgba('#1B2B34cc');
@@ -47,7 +47,27 @@ const [red,green,blue, alpha] = hexToRgba('#1B2B34cc');
 // in template string usage
 let info = `css rgba color value: ${hexToRgba('#1B2B34cc')}`;
 // will output 'css rgba color value: rgba(27,43,52,0.8)'
+
+// array from somewhere else
+const hexArr = [17, 187, 34, 1.0];
+// any params based method accepts arrays that way
+let hex = isValidRgba( ...hexArr );
 ```
+
+## Methods
+```
+rgbaToHex(...):string|false, rgbaToHex(array):string|false
+rgbaToAHex(...):string|false, rgbaToAHex(array):string|false
+hexToRgba(string):array, hexToRgba(string).toString() -> cssString
+aHexToRgba(string):array, aHexToRgba(string).toString() -> cssString
+isValidHex(string):bool
+isValidRgba(...):bool
+rgbaToArray(cssString):array, rgbaToArray(cssString).toString() -> cssString
+```
+- `...` represents for params r:int(255),g:int(255),b:int(255),opacity:float(1.0)
+- `cssString` represents an `rgba(int, int, int, float)` string
+
+See examples below for usage.
 
 ## Note
 
@@ -100,7 +120,8 @@ hexToRgba('#1B2c') + ''           ==  'rgba(17,187,34,0.8)'
 hexToRgba('#1B2c').toString()     ==  'rgba(17,187,34,0.8)'
 
 
-rgbaToHex([17, 187, 34, 1.0])               == '#11BB22'                      // using an array as argument
+rgbaToHex([17, 187, 34, 1.0])               == '#11BB22'                      // using an array as an argument
+rgbaToAHex([17, 187, 34, 1.0])              == '#11BB22'                      // using an array as an argument
 rgbaToArray('rgba(255,55, 255, 1.0);')      == [255, 55, 255, 1.0]            // getting an array from RGBA css string (semicolon is ignored)
 rgbaToArray('abc 255, 55, 255, 1.0').toString() == 'rgba(255,55,255,1.0)'  // use it to clean up a string
 ```
@@ -171,6 +192,9 @@ default out: `[ 123, 123, 123, 0.8 ]`
 with `-s` as css rgba: `rgba(123,123,123,0.8)`
 
 ## Changes
+
+1.4.2 - 18 Nov 2021 
+changed readme
 
 1.4.2 - 03 Nov 2019 
 bumped version
