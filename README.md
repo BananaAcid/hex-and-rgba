@@ -58,8 +58,8 @@ let hex = isValidRgba( ...hexArr );
 ```
 rgbaToHex(...):string|false, rgbaToHex(array):string|false
 rgbaToAHex(...):string|false, rgbaToAHex(array):string|false
-hexToRgba(string):array, hexToRgba(string).toString() -> cssString
-aHexToRgba(string):array, aHexToRgba(string).toString() -> cssString
+hexToRgba(string):array|false, hexToRgba(string).toString() -> cssString
+aHexToRgba(string):array|false, aHexToRgba(string).toString() -> cssString
 isValidHex(string):bool
 isValidRgba(...):bool
 rgbaToArray(cssString):array, rgbaToArray(cssString).toString() -> cssString
