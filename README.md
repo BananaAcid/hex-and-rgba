@@ -62,7 +62,7 @@ hexToRgba(string):array|false, hexToRgba(string).toString() -> cssString
 aHexToRgba(string):array|false, aHexToRgba(string).toString() -> cssString
 isValidHex(string):bool
 isValidRgba(...):bool
-rgbaToArray(cssString):array, rgbaToArray(cssString).toString() -> cssString
+rgbaToArray(cssString):array|false, rgbaToArray(cssString).toString() -> cssString
 ```
 - `...` represents for params r:int(255),g:int(255),b:int(255),opacity:float(1.0)
 - `cssString` represents an `rgba(int, int, int, float)` string
