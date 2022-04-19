@@ -10,7 +10,7 @@ npm install --save hex-and-rgba
 ## Usage
 ```js
 var rgbaToHex   = require('hex-and-rgba').rgbaToHex;
-var rgbaToAHex   = require('hex-and-rgba').rgbaToAHex;
+var rgbaToAHex  = require('hex-and-rgba').rgbaToAHex;
 var hexToRgba   = require('hex-and-rgba').hexToRgba;
 var aHexToRgba  = require('hex-and-rgba').aHexToRgba;
 var isValidHex  = require('hex-and-rgba').isValidHex;
@@ -29,14 +29,39 @@ var isRgba = isValidRgba(27, 43, 52, 0.8);       // true
 
 ## Vanilla usage in browser
 ```html
-<script src="vendor/hex-and-rgba/index.js></script>
+<script src="/vendor/hex-and-rgba/index.js"></script>
 ```
 ```js
 var rgbaToHex = hexAndRgba.rgbaToHex;
-var hex  = rgbaToHex(27, 43, 52, 0.8);  // '#1b2b34cc'
+var hex = rgbaToHex(27, 43, 52, 0.8);  // '#1b2b34cc'
 ```
 
-## ES6 + ESM usage
+## Vanilla ES6 usage in browser
+bind module name with an url. (you may use v1.4.2: `https://rawcdn.githack.com/BananaAcid/hex-and-rgba/38f4dd9bb55d5eb911332c2c3c16d667afc24b15/index.js`)
+```html
+<script type="importmap">
+  {
+    "imports": {
+      "hex-and-rgba": "/vendor/hex-and-rgba/index.js"
+    }
+  }
+</script>
+
+<script type="module" src="/main.js"></script>
+```
+main.js
+```js
+// imports to window.hexAndRgba
+import "hex-and-rgba";
+// single functions extraction
+const { hexToRgba, isValidRgba } = hexAndRgba;
+
+// array deconstruction:
+const [red,green,blue, alpha] = hexToRgba('#1B2B34cc');
+...
+```
+
+## ES6 + ESM usage (node)
 ```js
 // single functions import
 import {hexToRgba, isValidRgba} from 'hex-and-rgba';
@@ -64,8 +89,8 @@ isValidHex(string):bool
 isValidRgba(...):bool
 rgbaToArray(cssString):array|false, rgbaToArray(cssString).toString() -> cssString
 ```
-- `...` represents for params r:int(255),g:int(255),b:int(255),opacity:float(1.0)
-- `cssString` represents an `rgba(int, int, int, float)` string
+- `...` represents the following params -> r:int(255),g:int(255),b:int(255),opacity:float(1.0)
+- `cssString` represents a `rgba(int, int, int, float)` string
 
 See examples below for usage.
 
@@ -129,7 +154,7 @@ rgbaToArray('abc 255, 55, 255, 1.0').toString() == 'rgba(255,55,255,1.0)'     //
 ## Commandline usage (Bash, Windows)
 `hex-and-rgba [-srha] <value>` (bridge to `rgbatohex`, `hextorgba` and `ahextorgba`)
 ```bash
-# without package installation, only node must be installed 
+# without package installation, only node must be installed, but the specific conversion commands will not be available
 $ npx hex-and-rgba -r "rgba(....)"
 #
 # or
@@ -140,14 +165,17 @@ $ hex-and-rgba -h "#1B2B34cc"
 $ hex-and-rgba -h -s "#1B2B34cc"
 $ hex-and-rgba -a "#cc1B2B34cc"
 $ hex-and-rgba -a -s "#cc1B2B34"
+```
 
+params for the conversion type
+```
   -h      hex to rgba
   -ah     ahex to rgba
   -r      rgba to hex
   -ra     rgba to ahex
 ```
 
-params for the specific commands
+params for the output formatting
 ```
   -s      out as css rgba string (for hex* commands only)
   -t      out as tab seperated rgba parts (for hex* commands only)
@@ -193,8 +221,11 @@ with `-s` as css rgba: `rgba(123,123,123,0.8)`
 
 ## Changes
 
+1.4.2 - 19 Apr 2022 
+changed readme (added browser modules info, some infos added)
+
 1.4.2 - 18 Nov 2021 
-changed readme
+changed readme (added Methods section)
 
 1.4.2 - 03 Nov 2019 
 bumped version
