@@ -64,7 +64,7 @@ const [red,green,blue, alpha] = hexToRgba('#1B2B34cc');
 ...
 ```
 
-## ES6 + ESM usage (node)
+## ES6 + ESM usage (node, AMD, CommonJS)
 ```js
 // single functions import
 import {hexToRgba, isValidRgba} from 'hex-and-rgba';
