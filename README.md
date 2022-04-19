@@ -37,7 +37,10 @@ var hex = rgbaToHex(27, 43, 52, 0.8);  // '#1b2b34cc'
 ```
 
 ## Vanilla ES6 usage in browser
-bind module name with an url. (you may use v1.4.2: `https://rawcdn.githack.com/BananaAcid/hex-and-rgba/38f4dd9bb55d5eb911332c2c3c16d667afc24b15/index.js`)
+bind module name with an url.
+(you may use v1.4.2: `https://rawcdn.githack.com/BananaAcid/hex-and-rgba/38f4dd9bb55d5eb911332c2c3c16d667afc24b15/index.js`)
+*Info:* index.js is 6kb, with gzip/brotli it is 1kb - you want your server to compress the files on transfer.
+
 ```html
 <script type="importmap">
   {
