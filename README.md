@@ -7,7 +7,7 @@ Convert HEX to RGBA and back
 npm install --save hex-and-rgba
 ```
 
-## Usage
+## Usage Node/CommonJS
 ```js
 var rgbaToHex   = require('hex-and-rgba').rgbaToHex;
 var rgbaToAHex  = require('hex-and-rgba').rgbaToAHex;
@@ -64,7 +64,7 @@ const [red,green,blue, alpha] = hexToRgba('#1B2B34cc');
 ...
 ```
 
-## ES6 + ESM usage (node, AMD, CommonJS)
+## ES6 + ESM usage (AMD/CommonJS into Node ESM)
 ```js
 // single functions import
 import {hexToRgba, isValidRgba} from 'hex-and-rgba';
