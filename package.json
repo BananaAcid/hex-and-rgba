@@ -3,6 +3,9 @@
   "version": "1.4.2",
   "description": "Convert HEX/HEXa/aHEX with alpha to RGBa and back",
   "main": "index.js",
+  "exports": {
+    "./esm": "./esm/index.mjs"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BananaAcid/hex-and-rgba.git"

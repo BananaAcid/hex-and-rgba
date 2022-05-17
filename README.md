@@ -45,29 +45,24 @@ bind module name with an url.
 <script type="importmap">
   {
     "imports": {
-      "hex-and-rgba": "/vendor/hex-and-rgba/index.js"
+      "hex-and-rgba": "/vendor/hex-and-rgba/esm/index.mjs"
     }
   }
 </script>
 
-<script type="module" src="/main.js"></script>
-```
-main.js
-```js
-// imports to window.hexAndRgba
-import "hex-and-rgba";
-// single functions extraction
-const { hexToRgba, isValidRgba } = hexAndRgba;
+<script type="module">
+  // single functions extraction
+  import { hexToRgba, isValidRgba } from "hex-and-rgba";
 
-// array deconstruction:
-const [red,green,blue, alpha] = hexToRgba('#1B2B34cc');
-...
+  // array deconstruction:
+  const [red,green,blue, alpha] = hexToRgba('#1B2B34cc');
+</script>
 ```
 
-## ES6 + ESM usage (AMD/CommonJS into Node ESM)
+## ES6 + ESM, usage native ES6 module (Node, Babel)
 ```js
 // single functions import
-import {hexToRgba, isValidRgba} from 'hex-and-rgba';
+import {hexToRgba, isValidRgba} from 'hex-and-rgba/esm';
 
 // array deconstruction:
 const [red,green,blue, alpha] = hexToRgba('#1B2B34cc');
@@ -82,6 +77,13 @@ const hexArr = [17, 187, 34, 1.0];
 let hex = isValidRgba( ...hexArr );
 ```
 
+## AMD/CommonJS support by Babel, ...
+```js
+import {hexToRgba, isValidRgba} from 'hex-and-rgba';
+
+// ... rest like previous example
+```
+
 ## Methods
 ```
 rgbaToHex(...):string|false, rgbaToHex(array):string|false
@@ -92,7 +94,7 @@ isValidHex(string):bool
 isValidRgba(...):bool
 rgbaToArray(cssString):array|false, rgbaToArray(cssString).toString() -> cssString
 ```
-- `...` represents the following params -> r:int(255),g:int(255),b:int(255),opacity:float(1.0)
+- `...` represents the following params -> `r:int(255),g:int(255),b:int(255),opacity:float(1.0)`
 - `cssString` represents a `rgba(int, int, int, float)` string
 
 See examples below for usage.
@@ -152,6 +154,8 @@ rgbaToHex([17, 187, 34, 1.0])               == '#11BB22'                      //
 rgbaToAHex([17, 187, 34, 1.0])              == '#11BB22'                      // using an array as an argument
 rgbaToArray('rgba(255,55, 255, 1.0);')      == [255, 55, 255, 1.0]            // getting an array from RGBA css string (semicolon is ignored)
 rgbaToArray('abc 255, 55, 255, 1.0').toString() == 'rgba(255,55,255,1.0)'     // use it to clean up a string
+rgbaToArray('rgba( 255 55 255 / 50%)')          == [255, 55, 255, 0.5]     // support new syntax
+rgbaToArray('rgba( 100% 0% 100% / 50%)')        == [255, 0, 255, 0.5]      // support new syntax
 ```
 
 ## Commandline usage (Bash, Windows)
@@ -223,6 +227,10 @@ default out: `[ 123, 123, 123, 0.8 ]`
 with `-s` as css rgba: `rgba(123,123,123,0.8)`
 
 ## Changes
+
+2.0.0 - 17 May 2022
+added ES6 module
+added new css rgba syntax to be parsed with rgbaToArray
 
 1.4.2 - 19 Apr 2022 
 changed readme (added browser modules info, some infos added)

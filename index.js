@@ -163,9 +163,16 @@ hexAndRgba.aHexToRgba = function aHexToRgba(ahex)
  */
 hexAndRgba.rgbaToArray = function rgbaToArray(rgba)
 {
-                                                            // convert string to int
-    var codePairs = rgba.match(/([0-9\.]+)/g).map( function(e) { return +e; });
-
+    // convert string to int
+    let codePairs = rgba.match(/([0-9\.%]+)/g).map(function (e, i) {
+        if (e.indexOf('%') !== -1) {
+            return (i !== 3)
+                ? Math.floor(e.replace('%', '') / (100 / 255))
+                : e.replace('%', '') / 100;
+        }
+        else 
+            return +e;
+    });
 
     if (codePairs.length < 3 || codePairs.length > 4)       // arguments length check
         return false;

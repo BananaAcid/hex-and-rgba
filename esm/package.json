@@ -1,0 +1,9 @@
+{
+  "main": "index.mjs",
+  "type": "module",
+
+  "scripts": {
+    "start": "wsl -e \"node tests/tests.mjs\"",
+    "test": "node tests/tests.mjs"
+  }
+}
